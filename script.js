@@ -1,40 +1,59 @@
-// Function: getComputerChoice
-    // Define choices array: ["rock", "paper", "scissors"]
-    // Generate a random number between 0 and 2 using RNG function
-    // Round the number down to the nearest integer
-    // Access the choice from the array using the generated number
-    // Return the chosen value
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    return choices[Math.floor(Math.random() * 2)].toString();
+}
 
-// Function: getHumanChoice
-    // Declare variable 'choice'
-    // Prompt user for input and store it in 'choice'
-    // Convert 'choice' to lowercase
-    // If 'choice' is "rock", "paper", or "scissors"
-        // Return the 'choice'
-    // Else
-        // Display "Invalid choice, please enter rock, paper, or scissors"
+function getHumanChoice() {
+    let choice = prompt("Rock, Paper, Scissors?");
+    if (choice === "rock" || choice === "paper" || choice === "scissors") {
+        return choice.toLowerCase();
+    } else if (choice === null) {
+        alert("Cancelled");
+    } else {
+        alert("Invalid choice, please choose between rock, paper, or scissors");
+    }
+}
 
-// Initialize humanScore to 0
-// Initialize computerScore to 0
-// Set humanChoice to the return value of getHumanChoice()
-// Set computerChoice to the return value of getComputerChoice()
+let humanScore = 0;
+let computerScore = 0;
+let humanChoice = getHumanChoice();
+let computerChoice = getComputerChoice();
 
-// Function: playRound (humanChoice, computerChoice)
-    // Use switch(true) for decision-making
-        // Case 1: humanChoice equals computerChoice
-            // Display "It's a tie!"
-            // break
+function playRound() {
+    switch(true) {
+        case (humanChoice === computerChoice):
+            console.log(
+                "Human: " + humanChoice + "\n" +
+                "Computer: " + computerChoice + "\n" +
+                "It's a tie!" + "\n" +
+                "Human: " + humanScore + "\n" +
+                "Computer: " + computerScore);
+            break;
+        case (humanChoice === "rock" && computerChoice === "paper"
+            ||humanChoice === "paper" && computerChoice === "scissors"
+            ||humanChoice === "scissors" && computerChoice === "rock"):
+            computerScore++;
+            console.log(
+                "Human: " + humanChoice + "\n" +
+                "Computer: " + computerChoice + "\n" +
+                "Computer Wins!" + "\n" +
+                "Human: " + humanScore + "\n" +
+                "Computer: " + computerScore);
+            break;
+        case (computerChoice === "rock" && humanChoice === "paper"
+            ||computerChoice === "paper" && humanChoice === "scissors"
+            ||computerChoice === "scissors" && humanChoice === "rock"):
+            humanScore++;
+            console.log(
+                "Human: " + humanChoice + "\n" +
+                "Computer: " + computerChoice + "\n" +
+                "Human Wins!" + "\n" +
+                "Human: " + humanScore + "\n" +
+                "Computer: " + computerScore);
+            break;
+        default:
+            break;
+    }
+}
 
-        // Case 2: humanChoice is "scissors" and computerChoice is "paper", 
-        // or humanChoice is "paper" and computerChoice is "rock",
-        // or humanChoice is "rock" and computerChoice is "scissors"
-            // Display "Human wins!"
-            // Increment humanScore
-            // break
-
-        // Default case:
-            // Display "Computer wins!"
-            // Increment computerScore
-            // break
-
-// Call playRound with humanChoice and computerChoice as arguments
+playRound();
