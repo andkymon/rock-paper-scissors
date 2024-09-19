@@ -56,8 +56,11 @@ function playGame() {
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         if (humanSelection === undefined) i--;
+        console.clear();
         playRound(i + 1, humanSelection, computerSelection);
-        
+        console.log("Current Score:\n" +
+            "Human: " + humanScore
+            + "\nComputer:" + computerScore);
     }
 }
 playGame();
