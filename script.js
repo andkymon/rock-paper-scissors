@@ -56,11 +56,24 @@ function playGame() {
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         if (humanSelection === undefined) i--;
-        console.clear();
         playRound(i + 1, humanSelection, computerSelection);
         console.log("Current Score:\n" +
             "Human: " + humanScore
             + "\nComputer:" + computerScore);
     }
+
+    switch (true) {
+        case (humanScore === computerScore):
+            console.log("The game ended in a Tie!")
+            break;
+        case (humanScore < computerScore):
+            console.log("Computer Wins the Game!")
+            break;
+        case (humanScore > computerScore):
+            console.log("Human Wins the Game!")
+            break;
+    }
 }
 playGame();
+
+
