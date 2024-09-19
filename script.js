@@ -14,46 +14,50 @@ function getHumanChoice() {
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
 
-function playRound() {
-    switch(true) {
-        case (humanChoice === computerChoice):
-            console.log(
-                "Human: " + humanChoice + "\n" +
-                "Computer: " + computerChoice + "\n" +
-                "It's a tie!" + "\n" +
-                "Human: " + humanScore + "\n" +
-                "Computer: " + computerScore);
-            break;
-        case (humanChoice === "rock" && computerChoice === "paper"
-            ||humanChoice === "paper" && computerChoice === "scissors"
-            ||humanChoice === "scissors" && computerChoice === "rock"):
-            computerScore++;
-            console.log(
-                "Human: " + humanChoice + "\n" +
-                "Computer: " + computerChoice + "\n" +
-                "Computer Wins!" + "\n" +
-                "Human: " + humanScore + "\n" +
-                "Computer: " + computerScore);
-            break;
-        case (computerChoice === "rock" && humanChoice === "paper"
-            ||computerChoice === "paper" && humanChoice === "scissors"
-            ||computerChoice === "scissors" && humanChoice === "rock"):
-            humanScore++;
-            console.log(
-                "Human: " + humanChoice + "\n" +
-                "Computer: " + computerChoice + "\n" +
-                "Human Wins!" + "\n" +
-                "Human: " + humanScore + "\n" +
-                "Computer: " + computerScore);
-            break;
-        default:
-            break;
+    function playRound(round, humanChoice, computerChoice) {
+        switch(true) {
+            case (humanChoice === computerChoice):
+                console.log(
+                    "Round:" + round + "\n\n" +
+                    "Human: " + humanChoice + "\n" +
+                    "Computer: " + computerChoice + "\n\n" +
+                    "It's a tie!");
+                break;
+            case (humanChoice === "rock" && computerChoice === "paper"
+                ||humanChoice === "paper" && computerChoice === "scissors"
+                ||humanChoice === "scissors" && computerChoice === "rock"):
+                console.log(
+                    "Round:" + round + "\n\n" +
+                    "Human: " + humanChoice + "\n" +
+                    "Computer: " + computerChoice + "\n\n" +
+                    "Computer Wins this Round!");
+                computerScore++;
+                break;
+            case (computerChoice === "rock" && humanChoice === "paper"
+                ||computerChoice === "paper" && humanChoice === "scissors"
+                ||computerChoice === "scissors" && humanChoice === "rock"):
+                console.log(
+                    "Round:" + round + "\n\n" +
+                    "Human: " + humanChoice + "\n" +
+                    "Computer: " + computerChoice + "\n\n" +
+                    "Human Wins this Round!");
+                humanScore++;
+                break;
+            default:
+                break;
+        }
+    }
+
+    for (i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        if (humanSelection === undefined) i--;
+        playRound(i + 1, humanSelection, computerSelection);
+        
     }
 }
-
-playRound();
+playGame();
