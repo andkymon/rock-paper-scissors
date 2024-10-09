@@ -53,9 +53,15 @@ function playGame() {
         switch (true) {
             case (computerScore === 5):
                 console.log("Computer Wins the Game!")
+                round = 0;
+                humanScore = 0;
+                computerScore = 0;
                 break;
             case (humanScore === 5):
                 console.log("Human Wins the Game!")
+                round = 0;
+                humanScore = 0;
+                computerScore = 0;
                 break;
         }
     }
