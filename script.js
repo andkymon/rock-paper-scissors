@@ -3,37 +3,28 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * 2)].toString();
 }
 
-function getHumanChoice() {
-    let choice = prompt("Rock, Paper, Scissors?");
-    if (choice === "rock" || choice === "paper" || choice === "scissors") {
-        return choice.toLowerCase();
-    } else if (choice === null) {
-        alert("Cancelled");
-    } else {
-        alert("Invalid choice, please choose between rock, paper, or scissors");
-    }
-}
-
 function playGame() {
+    let round = 0;
     let humanScore = 0;
     let computerScore = 0;
 
-    function playRound(round, humanChoice, computerChoice) {
+    function playRound(humanChoice, computerChoice) {
+        round++;
         switch(true) {
             case (humanChoice === computerChoice):
                 console.log(
-                    "Round:" + round + "\n\n" +
-                    "Human: " + humanChoice + "\n" +
-                    "Computer: " + computerChoice + "\n\n" +
+                    "ROUND " + round + "\n\n" +
+                    "Human chose " + humanChoice + "!\n" +
+                    "Computer chose " + computerChoice + "!\n\n" +
                     "It's a tie!");
                 break;
             case (humanChoice === "rock" && computerChoice === "paper"
                 ||humanChoice === "paper" && computerChoice === "scissors"
                 ||humanChoice === "scissors" && computerChoice === "rock"):
                 console.log(
-                    "Round:" + round + "\n\n" +
-                    "Human: " + humanChoice + "\n" +
-                    "Computer: " + computerChoice + "\n\n" +
+                    "ROUND " + round + "\n\n" +
+                    "Human chose " + humanChoice + "!\n" +
+                    "Computer chose " + computerChoice + "!\n\n" +
                     "Computer Wins this Round!");
                 computerScore++;
                 break;
@@ -41,9 +32,9 @@ function playGame() {
                 ||computerChoice === "paper" && humanChoice === "scissors"
                 ||computerChoice === "scissors" && humanChoice === "rock"):
                 console.log(
-                    "Round:" + round + "\n\n" +
-                    "Human: " + humanChoice + "\n" +
-                    "Computer: " + computerChoice + "\n\n" +
+                    "ROUND " + round + "\n\n" +
+                    "Human chose " + humanChoice + "!\n" +
+                    "Computer chose " + computerChoice + "!\n\n" +
                     "Human Wins this Round!");
                 humanScore++;
                 break;
@@ -52,28 +43,31 @@ function playGame() {
         }
     }
 
-    for (i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        if (humanSelection === undefined) i--;
-        playRound(i + 1, humanSelection, computerSelection);
-        console.log("Current Score:\n" +
-            "Human: " + humanScore
-            + "\nComputer:" + computerScore);
-    }
+    rockBtn.addEventListener("click", () => {
+        playRound("rock", getComputerChoice());
+    });
+    paperBtn.addEventListener("click", () => {
+        playRound("paper", getComputerChoice());
+    });
+    scissorsBtn.addEventListener("click", () => {
+        playRound("scissors", getComputerChoice());
+    });
 
     switch (true) {
-        case (humanScore === computerScore):
-            console.log("The game ended in a Tie!")
-            break;
-        case (humanScore < computerScore):
+        case (computerScore === 5):
             console.log("Computer Wins the Game!")
             break;
-        case (humanScore > computerScore):
+        case (humanScore === 5):
             console.log("Human Wins the Game!")
             break;
     }
 }
+
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+const results = document.querySelector("#results");
+
 playGame();
 
 
