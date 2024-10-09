@@ -16,29 +16,46 @@ function playGame() {
                     "ROUND " + round + "\n\n" +
                     "Human chose " + humanChoice + "!\n" +
                     "Computer chose " + computerChoice + "!\n\n" +
-                    "It's a tie!");
+                    "It's a tie!\n\n" +
+                    "SCORE:\n" +
+                    "Human: " + humanScore + "\n" +
+                    "Computer: " + computerScore);
                 break;
             case (humanChoice === "rock" && computerChoice === "paper"
                 ||humanChoice === "paper" && computerChoice === "scissors"
                 ||humanChoice === "scissors" && computerChoice === "rock"):
+                computerScore++;
                 console.log(
                     "ROUND " + round + "\n\n" +
                     "Human chose " + humanChoice + "!\n" +
                     "Computer chose " + computerChoice + "!\n\n" +
-                    "Computer Wins this Round!");
-                computerScore++;
+                    "Computer Wins this Round!\n\n" +
+                    "SCORE:\n" +
+                    "Human: " + humanScore + "\n" +
+                    "Computer: " + computerScore);
                 break;
             case (computerChoice === "rock" && humanChoice === "paper"
                 ||computerChoice === "paper" && humanChoice === "scissors"
                 ||computerChoice === "scissors" && humanChoice === "rock"):
+                humanScore++;
                 console.log(
                     "ROUND " + round + "\n\n" +
                     "Human chose " + humanChoice + "!\n" +
                     "Computer chose " + computerChoice + "!\n\n" +
-                    "Human Wins this Round!");
-                humanScore++;
+                    "Human Wins this Round!\n\n" +
+                    "SCORE:\n" +
+                    "Human: " + humanScore + "\n" +
+                    "Computer: " + computerScore);
                 break;
             default:
+                break;
+        }
+        switch (true) {
+            case (computerScore === 5):
+                console.log("Computer Wins the Game!")
+                break;
+            case (humanScore === 5):
+                console.log("Human Wins the Game!")
                 break;
         }
     }
@@ -52,15 +69,6 @@ function playGame() {
     scissorsBtn.addEventListener("click", () => {
         playRound("scissors", getComputerChoice());
     });
-
-    switch (true) {
-        case (computerScore === 5):
-            console.log("Computer Wins the Game!")
-            break;
-        case (humanScore === 5):
-            console.log("Human Wins the Game!")
-            break;
-    }
 }
 
 const rockBtn = document.querySelector("#rock");
