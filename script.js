@@ -49,13 +49,13 @@ function playGame() {
         }
         switch (true) {
             case (computerScore === 5):
-                results.textContent = "Computer Wins the Game! Select a choice to restart.";
+                results.textContent += "\n\nComputer Wins the Game! Select a choice to restart.";
                 round = 0;
                 humanScore = 0;
                 computerScore = 0;
                 break;
             case (humanScore === 5):
-                results.textContent = "Human Wins the Game! Select a choice to restart.";
+                results.textContent += "\n\nHuman Wins the Game! Select a choice to restart.";
                 round = 0;
                 humanScore = 0;
                 computerScore = 0;
